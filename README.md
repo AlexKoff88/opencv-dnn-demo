@@ -2,6 +2,9 @@
 
 Repository with samples of OpenCV DNN module usage
 
+## Prerequisites
+* MicroSoft Visual Studio 2015 (https://www.visualstudio.com/vs/older-downloads/)
+
 ## Installation
 * If you use git you need to set you proxy settings like this:
 ``` 
