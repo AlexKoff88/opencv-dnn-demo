@@ -32,7 +32,7 @@ mkdir -Name data
 
 # GoogLeNet data
 wget https://raw.githubusercontent.com/opencv/opencv_extra/master/testdata/dnn/bvlc_googlenet.prototxt -OutFile data/bvlc_googlenet.prototxt
-#wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel -OutFile data/bvlc_googlenet.caffemodel
+wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel -OutFile data/bvlc_googlenet.caffemodel
 wget https://raw.githubusercontent.com/HoldenCaulfieldRye/caffe/master/data/ilsvrc12/synset_words.txt -OutFile data/synset_words.txt
 wget https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/googlenet_1.png?raw=true -OutFile data/googlenet_1.png
 
