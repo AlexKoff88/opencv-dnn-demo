@@ -28,21 +28,26 @@ function Expand-Tar($tarFile, $dest) {
     Expand-7Zip $tarFile $dest
 }
 
+function download-file($url, $dest) {
+    if(![System.IO.File]::Exists($dest)){
+		wget $url -OutFile $dest
+	}	
+}
+
 mkdir -Name data
 
-# GoogLeNet data
-wget https://raw.githubusercontent.com/opencv/opencv_extra/master/testdata/dnn/bvlc_googlenet.prototxt -OutFile data/bvlc_googlenet.prototxt
-wget http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel -OutFile data/bvlc_googlenet.caffemodel
-wget https://raw.githubusercontent.com/HoldenCaulfieldRye/caffe/master/data/ilsvrc12/synset_words.txt -OutFile data/synset_words.txt
-wget https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/googlenet_1.png?raw=true -OutFile data/googlenet_1.png
-
+download-file "https://raw.githubusercontent.com/opencv/opencv_extra/3.4/testdata/dnn/bvlc_googlenet.prototxt" data/bvlc_googlenet.prototxt
+download-file "http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel" data/bvlc_googlenet.caffemodel
+download-file "https://raw.githubusercontent.com/HoldenCaulfieldRye/caffe/master/data/ilsvrc12/synset_words.txt" data/synset_words.txt
+download-file "https://raw.githubusercontent.com/opencv/opencv_extra/3.4/testdata/dnn/googlenet_1.png" data/googlenet_1.png
+download-file "https://raw.githubusercontent.com/opencv/opencv_extra/3.4/testdata/dnn/space_shuttle.jpg" data/space_shuttle.jpg
 # MobileNet data
 # TensorFlow
-wget	 http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_11_06_2017.tar.gz  -OutFile data/ssd_mobilenet_v1_coco_11_06_2017.tar.gz
+download-file "https://raw.githubusercontent.com/opencv/opencv_extra/3.4/testdata/dnn/ssd_mobilenet_v1_coco.pbtxt" data/ssd_mobilenet_v1_coco.pbtxt
+download-file "http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_11_06_2017.tar.gz" data/ssd_mobilenet_v1_coco_11_06_2017.tar.gz
 DeGZip-File 'data/ssd_mobilenet_v1_coco_11_06_2017.tar.gz'
 Expand-Tar data/ssd_mobilenet_v1_coco_11_06_2017.tar data
 # Caffe
-wget "https://drive.google.com/uc?export=download&id=0B3gersZ2cHIxRm5PMWRoTkdHdHc" -OutFile data/MobileNetSSD_deploy.caffemodel
-wget "https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/daef68a6c2f5fbb8c88404266aa28180646d17e0/MobileNetSSD_deploy.prototxt" -OutFile data/MobileNetSSD_deploy.prototxt
-wget "https://github.com/opencv/opencv_extra/blob/master/testdata/dnn/dog416.png?raw=true"  -OutFile data/dog416.png
-
+download-file "https://drive.google.com/uc?export=download&id=0B3gersZ2cHIxRm5PMWRoTkdHdHc" data/MobileNetSSD_deploy.caffemodel
+download-file "https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/daef68a6c2f5fbb8c88404266aa28180646d17e0/MobileNetSSD_deploy.prototxt" data/MobileNetSSD_deploy.prototxt
+download-file "https://raw.githubusercontent.com/opencv/opencv_extra/3.4/testdata/dnn/dog416.png" data/dog416.png
